@@ -1,0 +1,249 @@
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a1a1a, #0a0a0a);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    perspective: 1500px;
+    transform-style: preserve-3d;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up var(--duration) ease-in-out infinite;
+    box-shadow: 0 0 15px var(--accent-color);
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+.particle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(8px);
+}
+
+.grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+    transform-style: preserve-3d;
+    transform: rotateX(60deg) scale(2);
+    opacity: 0.3;
+    will-change: transform;
+}
+
+.waves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background: 
+        radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 2%,
+            rgba(0, 255, 157, 0.05) 2.5%,
+            transparent 3%
+        );
+    animation: wave 12s ease-in-out infinite;
+    mix-blend-mode: screen;
+    transform-style: preserve-3d;
+    will-change: transform, filter;
+}
+
+.cyber-grid {
+    position: absolute;
+    width: 400%;
+    height: 400%;
+    top: -150%;
+    left: -150%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+    animation: cyber-grid 30s linear infinite;
+    opacity: 0.2;
+    will-change: transform;
+}
+
+.energy-field {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    background: radial-gradient(circle at center, 
+        rgba(0, 255, 157, 0) 0%,
+        rgba(0, 255, 157, 0.01) 50%,
+        rgba(0, 255, 157, 0.02) 100%
+    );
+    animation: energy-pulse 8s ease-in-out infinite;
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(120vh) translateZ(-100px) translateX(-50px) scale(0);
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.3;
+        transform: translateY(50vh) translateZ(100px) translateX(50px) scale(0.6);
+    }
+    100% {
+        transform: translateY(-20vh) translateZ(-50px) translateX(-20px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes grid-move {
+    0% {
+        transform: rotateX(60deg) scale(2) translateY(0) translateZ(0);
+    }
+    50% {
+        transform: rotateX(65deg) scale(2.2) translateY(25px) translateZ(50px);
+    }
+    100% {
+        transform: rotateX(60deg) scale(2) translateY(50px) translateZ(0);
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0) scale(1) rotateZ(0deg);
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05) rotateZ(2deg);
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        transform: translateY(-20px) scale(1.1) rotateZ(-2deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes cyber-grid {
+    0% {
+        transform: rotateX(45deg) rotateY(45deg) translateZ(-100px);
+    }
+    50% {
+        transform: rotateX(45deg) rotateY(45deg) translateZ(100px);
+    }
+    100% {
+        transform: rotateX(45deg) rotateY(45deg) translateZ(-100px);
+    }
+}
+
+@keyframes energy-pulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.5;
+    }
+}
+
+/* Enhanced glow effect */
+.glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at center, 
+        rgba(0, 255, 157, 0.2), 
+        rgba(0, 255, 157, 0.1) 40%, 
+        transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: glow-move 15s ease-in-out infinite;
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+}
+
+.glow::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(40px);
+    opacity: 0.5;
+    transform: scale(1.4);
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow-move {
+    0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translate(50%, 25%) scale(1.5) rotate(90deg);
+    }
+    50% {
+        transform: translate(100%, 50%) scale(1) rotate(180deg);
+    }
+    75% {
+        transform: translate(50%, 75%) scale(2) rotate(270deg);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1.6);
+    }
+}
+
+/* Matrix rain effect */
+.matrix-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+} 
